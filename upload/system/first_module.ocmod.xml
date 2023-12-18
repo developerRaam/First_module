@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Modification Default</name>
+    <version>1.0</version>
+    <author>OpenCart Ltd</author>
+    <link>http://www.opencart.com</link>
+    <file path="admin/controller/common/column_left.php">
+        <operation>
+            <search><![CDATA[ if ($this->user->hasPermission('access', 'marketplace/extension')) ]]></search>
+            <add position="after"><![CDATA[
+            if ($this->config->get('module_first_module_status')) { 
+            $marketplace[] = array(
+                'name'	   => 'Modules',
+                'href'     => $this->url->link('Modules', 'user_token=' . $this->session->data['user_token'], true),
+                'children' => array()
+                );
+            }
+            ]]></add>
+        </operation>
+    </file>  
+</modification>
